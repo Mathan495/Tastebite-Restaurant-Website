@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="menu-banner">
+    <div class="container">
+        <div class="banner-content">
+            <h1 class="text-warning">🍽️ Our Delicious Menu</h1>
+            <p>
+                Freshly prepared dishes served throughout the day.
+                Explore our breakfast, lunch, and dinner specials.
+            </p>
+            <a href="#menu" class="btn btn-warning p-2 btn-sm">
+                View More >
+            </a>
+        </div>
+    </div>
+</section>
+<!-- Search & Filter -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <form method="GET" class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="input-group">
+                    <input type="text" id="searchInput" name="search" class="form-control search form-control-lg"
+                    placeholder="🔍 Search your favourite food..." value="{{ request.GET.search }}">
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Morning Menu -->
+<section class="py bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">
+                🌅 Morning Menu
+            </h2>
+            <p class="text-muted">
+                Start your day with delicious and healthy breakfast dishes.
+            </p>
+        </div>
+        <div class="row">
+            {% for food in morning_foods %}
+            <div class="col-lg-4 col-md-6 mb-4 food-card">
+                <div class="card dish-card h-100 shadow">
+                    <img src="{{ food.image.url }}"
+                        class="card-img-top"
+                        style="height:250px;object-fit:cover;" alt="{{ food.name }}">
+                    <div class="card-body">
+                        <!-- Name and Price -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0 food-name">{{ food.name }}</h5>
+                            <h5 class="text-danger mb-0">
+                                ₹{{ food.price }}
+                            </h5>
+                        </div>
+                        <!-- Meal Time and Availability -->
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="badge bg-primary">
+                                {{ food.meal_time }}
+                            </span>
+                            {% if food.is_available %}
+                            <span class="badge bg-success">
+                                Available
+                            </span>
+                            {% else %}
+                            <span class="badge bg-danger">
+                                Out of Stock
+                            </span>
+                            {% endif %}
+                        </div>
+                        <div class="d-flex align-items-center quantity-box my-3 mb-0">
+                            <button type="button" class="btn btn-outline-dark qty-btn decrease">
+                                -
+                            </button>
+                            <span class="mx-3 fw-bold quantity">1</span>
+                            <button type="button" class="btn btn-outline-dark qty-btn increase">
+                                +
+                            </button>
+                        </div>
+                        <form method="POST" action="{% url 'add_to_cart' food.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="quantity" class="quantity-input" value="1">
+                            {% if request.session.table_id %}
+                            <button type="submit" class="btn btn-warning w-100 mt-4">Add to Order</button>
+                            {% else %}
+                            <a href="{% url 'home' %}" class="btn btn-warning w-100 mt-4">Select Table</a>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="text-center">
+                <h4>No Morning Foods Available.</h4>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Afternoon Menu -->
+<section class="py-2 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">
+                ☀ Afternoon Menu
+            </h2>
+            <p class="text-muted">
+                Start your day with delicious and healthy breakfast dishes.
+            </p>
+        </div>
+        <div class="row">
+            {% for food in afternoon_foods %}
+            <div class="col-lg-4 col-md-6 mb-4 food-card">
+                <div class="card dish-card h-100 shadow">
+                    <img src="{{ food.image.url }}"
+                        class="card-img-top"
+                        style="height:250px;object-fit:cover;" alt="{{ food.name }}">
+                    <div class="card-body">
+                        <!-- Name and Price -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0 food-name">{{ food.name }}</h5>
+                            <h5 class="text-danger mb-0">
+                                ₹{{ food.price }}
+                            </h5>
+                        </div>
+                        <!-- Meal Time and Availability -->
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="badge bg-primary">
+                                {{ food.meal_time }}
+                            </span>
+                            {% if food.is_available %}
+                            <span class="badge bg-success">
+                                Available
+                            </span>
+                            {% else %}
+                            <span class="badge bg-danger">
+                                Out of Stock
+                            </span>
+                            {% endif %}
+                        </div>
+                        <div class="d-flex align-items-center quantity-box my-3 mb-0">
+                            <button type="button" class="btn btn-outline-dark qty-btn decrease">
+                                -
+                            </button>
+                            <span class="mx-3 fw-bold quantity">1</span>
+                            <button type="button" class="btn btn-outline-dark qty-btn increase">
+                                +
+                            </button>
+                        </div>
+                        <form method="POST" action="{% url 'add_to_cart' food.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="quantity" class="quantity-input" value="1">
+                            <button
+                                type="submit"
+                                class="btn btn-warning w-100 mt-4">
+                                Add to Order
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="text-center">
+                <h4>No Morning Foods Available.</h4>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Night Menu -->
+<section class="py-2 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">
+                🌙 Night Menu
+            </h2>
+            <p class="text-muted">
+                Start your day with delicious and healthy breakfast dishes.
+            </p>
+        </div>
+        <div class="row">
+            {% for food in night_foods %}
+            <div class="col-lg-4 col-md-6 mb-4 food-card">
+                <div class="card dish-card h-100 shadow">
+                    <img src="{{ food.image.url }}"
+                        class="card-img-top"
+                        style="height:250px;object-fit:cover;" alt="{{ food.name }}">
+                    <div class="card-body">
+                        <!-- Name and Price -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0 food-name">{{ food.name }}</h5>
+                            <h5 class="text-danger mb-0">
+                                ₹{{ food.price }}
+                            </h5>
+                        </div>
+                        <!-- Meal Time and Availability -->
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="badge bg-primary">
+                                {{ food.meal_time }}
+                            </span>
+                            {% if food.is_available %}
+                            <span class="badge bg-success">
+                                Available
+                            </span>
+                            {% else %}
+                            <span class="badge bg-danger">
+                                Out of Stock
+                            </span>
+                            {% endif %}
+                        </div>
+                        <div class="d-flex align-items-center quantity-box my-3 mb-0">
+                            <button type="button" class="btn btn-outline-dark qty-btn decrease">
+                                -
+                            </button>
+                            <span class="mx-3 fw-bold quantity">1</span>
+                            <button type="button" class="btn btn-outline-dark qty-btn increase">
+                                +
+                            </button>
+                        </div>
+                        <form method="POST" action="{% url 'add_to_cart' food.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="quantity" class="quantity-input" value="1">
+                            <button
+                                type="submit"
+                                class="btn btn-warning w-100 mt-4">
+                                Add to Order
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="text-center">
+                <h4>No Morning Foods Available.</h4>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

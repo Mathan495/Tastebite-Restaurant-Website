@@ -1,0 +1,345 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Contact Hero -->
+<section class="bg-warning py-5">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold text-dark" style="font-size: 42px;">
+            📞 Contact Us
+        </h1>
+        <p class="lead text-dark mt-3">
+            We're always happy to assist you.
+            Visit us or get in touch today.
+        </p>
+    </div>
+</section>
+<!-- Contact Information -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Address -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 shadow border-0 text-center">
+                    <div class="card-body">
+                        <div class="display-6 mb-3">
+                            📍
+                        </div>
+                        <h4 class="fw-bold">
+                            Address
+                        </h4>
+                        <p class="text-muted">
+                            TasteBite Restaurant
+                            <br>
+                            123 Food Street
+                            <br>
+                            Madurai, Tamil Nadu
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Phone -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 shadow border-0 text-center">
+                    <div class="card-body">
+                        <div class="display-6 mb-3">
+                            📞
+                        </div>
+                        <h4 class="fw-bold">
+                            Phone
+                        </h4>
+                        <p class="text-muted">
+                            +91 98765 43210
+                            <br>
+                            +91 91234 56789
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Email -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 shadow border-0 text-center">
+                    <div class="card-body">
+                        <div class="display-6 mb-3">
+                            ✉️
+                        </div>
+                        <h4 class="fw-bold">
+                            Email
+                        </h4>
+                        <p class="text-muted">
+                            support@tastebite.com
+                            <br>
+                            info@tastebite.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Working Hours -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 shadow border-0 text-center">
+                    <div class="card-body">
+                        <div class="display-6 mb-3">
+                            🕒
+                        </div>
+                        <h4 class="fw-bold">
+                            Working Hours
+                        </h4>
+                        <p class="text-muted">
+                            Monday - Sunday
+                            <br>
+                            9:00 AM - 10:30 PM
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Google Map -->
+<section class="pb-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">
+                📌 Our Location
+            </h2>
+            <p class="text-muted">
+                Visit TasteBite Restaurant in Madurai.
+            </p>
+        </div>
+        <div class="card shadow border-0">
+            <div class="card-body p-0">
+                <iframe
+                    src="https://www.google.com/maps?q=Madurai,Tamil%20Nadu&output=embed"
+                    width="100%"
+                    height="450"
+                    style="border:0;"
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">
+                Meet Our Management Team
+            </h2>
+            <p class="text-muted">
+                Our experienced team is here to ensure the best dining experience.
+            </p>
+        </div>
+        <div class="row g-4">
+            <!-- Restaurant Manager -->
+            <div class="col-lg-4">
+                <div class="card shadow border-0 h-100">
+                    <div class="card-body text-center">
+                        <img src="{% static 'images/waiter.jpg' %}"
+                             class="rounded-circle mb-3" style="object-fit: cover;"
+                             width="120"
+                             height="120"
+                             alt="Manager">
+                        <h4 class="fw-bold">
+                            Vijay Kumar
+                        </h4>
+                        <span class="badge bg-warning text-dark mb-3">
+                            Restaurant Manager
+                        </span>
+                        <p class="mb-2">
+                            📞 +91 9876543210
+                        </p>
+                        <p class="mb-0">
+                            ✉ manager@tastebite.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Head Chef -->
+            <div class="col-lg-4">
+                <div class="card shadow border-0 h-100">
+                    <div class="card-body text-center">
+                        <img src="{% static 'images/chef img.avif' %}"
+                             class="rounded-circle mb-3" style="object-fit: cover;"
+                             width="120"
+                             height="120"
+                             alt="Chef">
+                        <h4 class="fw-bold">
+                            Arun Kumar
+                        </h4>
+                        <span class="badge bg-success mb-3">
+                            Head Chef
+                        </span>
+                        <p>
+                            👨‍🍳 Kitchen Hours
+                        </p>
+                        <p class="fw-semibold">
+                            9:00 AM – 10:00 PM
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Admin Office -->
+            <div class="col-lg-4">
+                <div class="card shadow border-0 h-100">
+                    <div class="card-body text-center">
+                        <img src="{% static 'images/admin.jpg' %}"
+                             class="rounded-circle mb-3" style="object-fit: cover;"
+                             width="120"
+                             height="120"
+                             alt="Admin">
+                        <h4 class="fw-bold">
+                            Admin Office
+                        </h4>
+                        <span class="badge bg-primary mb-3">
+                            Administration
+                        </span>
+                        <p class="mb-2">
+                            📞 +91 9123456789
+                        </p>
+                        <p class="mb-0">
+                            ✉ admin@tastebite.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow border-0">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-4">
+                            <h2 class="fw-bold">
+                                Send Us a Message
+                            </h2>
+                            <p class="text-muted">
+                                We'd love to hear from you.
+                            </p>
+                        </div>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        Full Name
+                                    </label>
+                                    <input type="text" class="form-control" name="name" placeholder="Enter your name" required />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        Email
+                                    </label>
+                                    <input type="email" class="form-control" name="email" placeholder="Enter your email" required />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        Phone Number
+                                    </label>
+                                    <input type="text" class="form-control" name="phone" placeholder="Enter phone number" required />
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        Subject
+                                    </label>
+                                    <input type="text" class="form-control" name="subject" placeholder="Enter Subject" required/>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">
+                                    Message
+                                </label>
+                                <textarea class="form-control" rows="5" name="message" placeholder="Write your message here..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-warning btn-lg w-100">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">
+                Frequently Asked Questions
+            </h2>
+            <p class="text-muted">
+                Find answers to the most commonly asked questions.
+            </p>
+        </div>
+        <div class="accordion shadow" id="faqAccordion">
+            <!-- FAQ 1 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button
+                        class="accordion-button fw-semibold"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne">
+                        Can I reserve a table online?
+                    </button>
+                </h2>
+                <div
+                    id="collapseOne"
+                    class="accordion-collapse collapse show"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes. Tables can be reserved through our website.
+                        Simply choose an available table, select your preferred
+                        time, and confirm your reservation instantly.
+                    </div>
+                </div>
+            </div>
+            <!-- FAQ 2 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button
+                        class="accordion-button collapsed fw-semibold"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo">
+                        What are your working hours?
+                    </button>
+                </h2>
+                <div
+                    id="collapseTwo"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        We are open every day from
+                        <strong>9:00 AM to 10:30 PM</strong>,
+                        including weekends and public holidays.
+                    </div>
+                </div>
+            </div>
+            <!-- FAQ 3 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button
+                        class="accordion-button collapsed fw-semibold"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree">
+                        Do you provide home delivery?
+                    </button>
+                </h2>
+                <div
+                    id="collapseThree"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes. We provide fast home delivery within selected
+                        service areas. Delivery charges may vary based on
+                        your location.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %} 
+{% block content %}
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="col-lg-8 mx-auto">
+      <div class="card shadow">
+        <div class="card-body p-5">
+          <div class="text-center mb-4">
+            <h2 class="fw-bold text-warning">TasteBite Restaurant</h2>
+            <h5>Customer Bill</h5>
+          </div>
+          <hr />
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <strong>Customer :</strong>
+              {{ order.customer.username }}
+            </div>
+            <div class="col-md-6 text-md-end">
+              <strong>Table :</strong>
+              {{ order.table.table_no }}
+            </div>
+          </div>
+          <table class="table table-bordered">
+            <thead class="table-dark">
+              <tr>
+                <th>Food</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in order_items %}
+              <tr>
+                <td>{{ item.food.name }}</td>
+                <td>₹{{ item.price }}</td>
+                <td>{{ item.quantity }}</td> 
+                <td>₹{{ item.price|floatformat:2|add:"0" }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="text-end">
+            <h5>Subtotal : ₹{{ subtotal }}</h5>
+            <h5>GST (5%) : ₹{{ gst|floatformat:2 }}</h5>
+            <hr />
+            <h3 class="text-success">
+              Grand Total : ₹{{ grand_total|floatformat:2 }}
+            </h3>
+          </div>
+          <div class="text-center mt-4">
+            <button onclick="window.print()" class="btn btn-success">
+              Print Bill
+            </button>
+            <div class="text-center mt-3">
+                <a href="{% url 'waiter_dashboard' %}"class="btn btn-warning">Back</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

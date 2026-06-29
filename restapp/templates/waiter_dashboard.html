@@ -1,0 +1,156 @@
+{% extends 'base.html' %} 
+{% block content %}
+<section class="py-5 bg-light">
+  <div class="container">
+    <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold">
+                    👨‍💼 Waiter Dashboard
+                </h2>
+                <p class="text-muted">
+                    Manage customer orders and food service.
+                </p>
+            </div>
+        </div>
+        <!-- Dashboard Cards -->
+        <div class="row g-4 mb-5">
+            <div class="col-lg-3 col-md-6">
+                <div class="card shadow border-0 text-center">
+                    <div class="card-body">
+                        <h6>Total Orders</h6>
+                        <h2 class="text-primary">
+                            {{ orders.count }}
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card shadow border-0 text-center">
+                    <div class="card-body">
+                        <h6>Pending</h6>
+                        <h2 class="text-warning">
+                            {{ pending_count }}
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card shadow border-0 text-center">
+                    <div class="card-body">
+                        <h6>Ready</h6>
+                        <h2 class="text-success">
+                            {{ ready_count }}
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card shadow border-0 text-center">
+                    <div class="card-body">
+                        <h6>Completed</h6>
+                        <h2 class="text-dark">
+                            {{ completed_count }}
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover text-center align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>Order ID</th>
+
+            <th>Table</th>
+
+            <th>Customer</th>
+
+            <th>Total</th>
+
+            <th>Status</th>
+
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for order in orders %}
+
+          <tr>
+            <td>#{{ order.id }}</td>
+
+            <td>Table {{ order.table.table_no }}</td>
+
+            <td>{{ order.customer.username }}</td>
+
+            <td>₹{{ order.total_amt }}</td>
+
+            <td>
+              {% if order.status == "pending" %}
+
+              <span class="badge bg-warning"> Pending </span>
+
+              {% elif order.status == "Confirmed" %}
+
+              <span class="badge bg-primary">
+                <a href="{% url 'chef' %}" class="text-white">Waiting for Chef</a></span>
+
+              {% elif order.status == "Preparing" %}
+
+              <span class="badge bg-info"> Preparing </span>
+
+              {% elif order.status == "Ready" %}
+
+              <a href="{% url 'serve_order' order.id %}" class="btn btn-success btn-sm">Serve Food</a>
+
+              {% elif order.status == "Completed" %}
+                <a href="{% url 'generate_bill' order.id %}" class="btn btn-dark btn-sm">
+                    Generate Bill</a>
+              {% elif order.status == "Bill Generated" %}
+                <button class="btn btn-secondary btn-sm" disabled>Bill Generated</button>
+              {% else %}
+                <button class="btn btn-secondary btn-sm" disabled>No Action</button>
+              {% endif %}
+            </td>
+
+            <td>
+              {% if order.status == "pending" %}
+
+              <a
+                href="{% url 'confirm_order' order.id %}"
+                class="btn btn-success btn-sm"
+              >
+                Confirm Order
+              </a>
+
+              {% else %}
+
+              <button class="btn btn-secondary btn-sm" disabled>
+                Confirmed
+              </button>
+
+              {% endif %}
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="6">No Orders Found</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <!-- Bar Charts -->
+    <div class="card shadow border-0 bg-light mt-5">
+        <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">Order Status Analysis</h4>
+        </div>
+        <div class="card-body">
+            <canvas id="orderChart" height="100"></canvas>
+        </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

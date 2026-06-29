@@ -1,0 +1,119 @@
+{% extends 'base.html' %} {% block content %}
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h2 class="fw-bold">👨‍🍳 Chef Dashboard</h2>
+        <p class="text-muted">Manage kitchen orders efficiently.</p>
+      </div>
+    </div>
+    <!-- Dashboard Cards -->
+    <div class="row g-4 mb-5">
+      <div class="col-lg-3 col-md-6">
+        <div class="card shadow border-0">
+          <div class="card-body text-center">
+            <h6>Total Orders</h6>
+            <h2 class="text-primary">{{ total_orders }}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card shadow border-0">
+          <div class="card-body text-center">
+            <h6>Confirmed</h6>
+            <h2 class="text-warning">{{ confirmed_orders }}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card shadow border-0">
+          <div class="card-body text-center">
+            <h6>Preparing</h6>
+            <h2 class="text-info">{{ preparing_orders }}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card shadow border-0">
+          <div class="card-body text-center">
+            <h6>Ready</h6>
+            <h2 class="text-success">{{ ready_orders }}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Orders Table -->
+    <div class="card shadow border-0">
+      <div class="card-header bg-dark text-white">
+        <h4 class="mb-0">Kitchen Orders</h4>
+      </div>
+      <div class="card-body table-responsive">
+        <table
+          class="table table-hover table-bordered align-middle text-center"
+        >
+          <thead class="table-warning">
+            <tr>
+              <th>Order</th>
+              <th>Table</th>
+              <th>Customer</th>
+              <th>Food Items</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in orders %}
+            <tr>
+              <td>#{{ order.id }}</td>
+
+              <td>Table {{ order.table.table_no }}</td>
+
+              <td>{{ order.customer.username }}</td>
+
+              <td class="text-center">
+                {% for item in order.orderitem_set.all %} 
+                    🍽 {{ item.food.name}}
+                    <b>x{{ item.quantity }}</b>
+                    <br />
+                {% endfor %}
+              </td>
+              <td>₹{{ order.total_amt }}</td>
+              <td>
+                {% if order.status == "Confirmed" %}
+                <span class="badge bg-warning"> Confirmed </span>
+                {% elif order.status == "Preparing" %}
+                <span class="badge bg-info"> Preparing </span>
+                {% elif order.status == "Ready" %}
+                <span class="badge bg-success"> Ready </span>
+                {% endif %}
+              </td>
+              <td>
+                {% if order.status == "Confirmed" %}
+                <a href="{% url 'start_preparing' order.id %}" class="btn btn-primary btn-sm">
+                  Start Preparing
+                </a>
+                {% elif order.status == "Preparing" %}
+                <a href="{% url 'mark_ready' order.id %}"class="btn btn-success btn-sm">
+                  Mark Ready
+                </a>
+                {% else %}
+                <a href="{% url 'serve_order' order.id %}"class="btn btn-success btn-sm">
+                  Completed
+                </a>
+                {% endif %}
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="7">No Orders Available</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="py-4" id="about">
+    <div class="container">
+
+        <div class="row align-items-center g-4">
+
+            <!-- Image -->
+
+            <div class="col-lg-6 abt-pic">
+                <img src="{% static 'images/rest-abt img.jpg' %}"
+                     alt="Restaurant"
+                     class="img-fluid rounded-4 shadow abtimg">
+            </div>
+
+            <!-- Content -->
+
+            <div class="col-lg-6">
+
+                <span class="badge bg-warning text-dark mb-3 px-3 py-2">
+                    About TasteBite
+                </span>
+
+                <h2 class="fw-bold mb-4">
+                    Creating Memorable Dining Experiences Since 2010
+                </h2>
+
+                <p class="text-muted mb-4">
+                    At TasteBite Restaurant, we believe that great food brings
+                    people together. Our chefs prepare every dish using fresh
+                    ingredients, authentic recipes, and a passion for culinary excellence.
+                </p>
+
+                <p class="text-muted mb-4">
+                    Whether you're planning a family dinner, a special celebration,
+                    or a casual meal with friends, we offer exceptional service,
+                    delicious cuisine, and a warm atmosphere.
+                </p>
+
+                <!-- Features -->
+
+                <div class="row">
+
+                    <div class="col-6 mb-3">
+                        <h5 class="fw-bold text-warning">
+                            ✓ Fresh Ingredients
+                        </h5>
+                    </div>
+
+                    <div class="col-6 mb-3">
+                        <h5 class="fw-bold text-warning">
+                            ✓ Expert Chefs
+                        </h5>
+                    </div>
+
+                    <div class="col-6 mb-3">
+                        <h5 class="fw-bold text-warning">
+                            ✓ Online Reservation
+                        </h5>
+                    </div>
+
+                    <div class="col-6 mb-3">
+                        <h5 class="fw-bold text-warning">
+                            ✓ Fast Service
+                        </h5>
+                    </div>
+
+                </div>
+
+                <a href="{% url 'menu' %}" class="btn btn-warning btn-lg mt-3">
+                    Explore Menu
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+{% endblock %}
